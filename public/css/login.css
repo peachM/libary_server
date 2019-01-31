@@ -1,0 +1,106 @@
+*{
+    margin:0;
+    padding: 0;
+}
+a,a:hover{
+    color: #aaa;
+    text-decoration: none !important;
+}
+
+.r_aside{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 36%;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    background-size: cover;
+    background-position: right bottom;
+    /*transition: width 0.3s ease-out;*/
+}
+/*logo*/
+.logo img{
+    position: absolute;
+    height: 150px;
+    margin-left: 50px;
+}
+/* 右边登录框*/
+.help a{
+    position: absolute;
+    left: 23%;
+    top: 40px;
+    width: 54%;
+    font-size: 13px;
+    line-height: 36px;
+    color: #d2d8e7;
+}
+.r_center{
+    position: absolute;
+    top: 30%;
+    left: 23%;
+    width: 58%;
+    background: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #aaa;
+}
+
+.r_center p{
+    color: black;
+    font-weight: bold;
+}
+
+div.yymbrd{
+    color: #aaa;
+    border:1px solid #aaa;
+    padding: 15px;
+    border-radius: 2px;
+}
+div.mmbrd{
+    color: #aaa;
+    border:1px solid #aaa;
+    border-top: 0;
+    padding: 15px;
+    border-radius: 2px;
+}
+
+input::-webkit-input-placeholder{
+    color: #aaa;
+}
+
+input{
+    padding: 0 0 0 30px;
+    border: 0;
+    outline: none;
+}
+
+
+.r_center>div:first-child{
+    display: flex;
+    justify-content: space-between;
+
+}
+.r_center>div:first-child>span,
+.r_center>div:first-child>a{
+    display: inline-block;
+}
+
+.r_center .ckbx{
+    margin: 10px 2px 10px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.r_center .ckbx>p{
+    color: #aaa;
+    font-weight: normal;
+    display: inline-block;
+}
+
+div.foot{
+    position: absolute;
+    bottom:20px;
+    left: 20px;
+    color: #fff;
+}

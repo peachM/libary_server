@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale-1.0" />
+    <!-- 引入boot的文件，引入顺序有要求-->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+    <style>
+        header{
+            background: url('./img/index/books.jpg') no-repeat top center;
+            background-size: cover;
+            min-height: 800px;
+        }
+
+        div.top>h1{
+            padding: 18px 50px; 
+            font-size: 2.8em;
+            color: #A0431B;
+            font-family: 'mv boli';
+        }
+        div.top>ul{
+            list-style: none;
+        }
+        div.top>ul li{
+            float: left;
+            margin: 20px 50px 0 50px;
+            text-align: center;
+        }
+        div.top>ul>li>p{
+            font-size: 0.85em;
+            color: #999;
+        }
+        
+        div.top{
+            background: white;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+        }
+        div.top>h1,div.top>ul{
+            display: inline-block;
+        }
+        .navbg{
+            padding-left:50px;
+            background: #ff7f38;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="top">
+                <h1>My Libary</h1>
+                <ul>
+                    <li><a href="javascript:;"><img src="./img/index/pin.png" alt=""><p>one reject</p></a></li>
+                    <li><a href="javascript:;"><img src="./img/index/email.png" alt=""><p>email</p></a></li>
+                    <li><a href="javascript:;"><img src="./img/index/telephone.png" alt=""><p>+6666 88</p></a></li>
+                </ul>   
+            </div>
+            <div class="navbar navbar-expand-md navbg navbar-dark">
+                <!-- 小屏幕最右侧的小按钮-->
+                <button class="btn btn-primary navbar-toggler" data-toggle="collapse" data-target="#content">
+                    <span class="navbar-toggler-icon"></span></button>
+                <!-- 导航栏中的菜单，小屏幕隐藏（垂直显示），大屏幕横向现实-->
+                <div class="collapse navbar-collapse" id="content">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">借阅</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">资源</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">新闻</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">新生须知</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+</body>
+</html>

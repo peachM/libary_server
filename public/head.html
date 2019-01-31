@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale-1.0"/>
+    <!-- 引入boot的文件，引入顺序有要求-->
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/head.css"/>
+    <style>
+        #head{
+            width: 100%;
+            height: 150px;
+            background-color: rgba(149, 175, 203, 1);
+            /*background: #4169E1;*/
+        }
+        #head img{
+            height: 150px;
+            margin: -5px 0 0 50px;
+        }
+        .carousel-item img{
+            width: 100%;
+            height: 400px;
+        }
+        
+        div.main{
+            width: 100%;
+            height: 500px;
+            background: #efefef;
+        }
+        div.left{
+            float: left;
+            width: 400px;
+            height: 347px;
+            margin:50px 0 0 100px;
+            background-color: #FFF;
+        }
+        div.left img{
+            height: 81px;
+            margin: 5px 0 0 5px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="head">
+        <img src="./img/logo.png" alt=""/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+            <!-- 导航-->
+            <div class="col-md-6">
+                <div class="nav">
+                    <ul>
+                        <li><a href="#">开放时间</a></li>
+                        <li><a href="#">推荐购买</a><span>|</span></li>
+                        <li><a href="#">下载</a><span>|</span></li>
+                        <li><a href="#">服务</a><span>|</span></li>
+                        <li><a href="#">概况</a><span>|</span></li>
+                        <li><a href="#">首页</a><span>|</span></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+        <!-- banner图-->
+    <div id="demo" class="carousel" data-ride="carousel">
+        <!-- 导航的图片-->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./img/banner1.jpg" alt=""/>
+                <!--<div class="carousel-caption text-danger"></div>-->
+            </div>
+            <div class="carousel-item">
+                <img src="./img/banner2.jpg" alt=""/>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/banner3.jpg" alt=""/>
+            </div>
+        </div>
+    </div>
+
+    <!-- main-->
+    <div class="main">
+        <div class="left">
+            <img width="76" src="./img/main/main1.png" alt=""/>
+            <img width="96" src="./img/main/main2.png" alt=""/>
+            <img width="94" src="./img/main/main3.png" alt=""/>
+            <img width="102" src="./img/main/main4.png" alt=""/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
