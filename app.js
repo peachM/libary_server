@@ -17,7 +17,7 @@ app.use(cors({
   credentials:true
 }))
 
-
+// 功能一：新书页面
 app.get("/newbook",(req,res)=>{
   var pno = req.query.pno;
   var pageSize = req.query.pageSize;
@@ -25,7 +25,7 @@ app.get("/newbook",(req,res)=>{
     pno = 1;
   }
   if(!pageSize){
-    pageSize = 7;
+    pageSize = 10;
   }
   // 3. 创建sql语句
   var sql = " SELECT * FROM new_book LIMIT ?,?";
