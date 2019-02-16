@@ -10,63 +10,194 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/index_media.css">
     <link rel="stylesheet" href="./css/login.css">
     <style>
-        header{
+        /* 头部 */
+        header {
             background: url('./img/index/books.jpg') no-repeat top center;
             background-size: cover;
             min-height: 800px;
         }
 
-        div.top>h1{
-            padding: 18px 50px; 
+        /* logo */
+        div.top>h1 {
+            padding: 18px 50px;
             font-size: 2.8em;
             color: #A0431B;
-            font-family: 'mv boli';
+            font-family: 'Kreon', 'serif', 'mv boli';
         }
-        div.top>ul{
+
+        div.rnav>ul {
             list-style: none;
         }
-        div.top>ul li{
+
+        div.rnav>ul li {
             float: left;
-            margin: 20px 50px 0 50px;
+            margin: 20px 50px 0 0;
             text-align: center;
         }
-        div.top>ul>li>p{
+
+        div.top>ul>li>p {
             font-size: 0.85em;
             color: #999;
         }
-        
-        div.top{
+
+        div.top {
             background: white;
             height: 90px;
             display: flex;
             justify-content: space-between;
         }
-        div.top>h1,div.top>ul{
+
+        div.top>h1,
+        div.rnav>ul {
             display: inline-block;
         }
-        .navbg{
-            padding-left:50px;
+
+        /* 导航栏 */
+        .navbg {
             background: #ff7f38;
+            padding: 0px;
         }
 
+        .navbg ul {
+            width: 100%;
+        }
+
+        .navbg ul>li {
+            width: 17%;
+            padding: 8px;
+        }
+
+        .navbg ul>li:hover {
+            background: #A0431B;
+        }
+
+        /* banner新闻 */
+        div.ban_news {
+            width: 40%;
+            float: right;
+            margin-top: 150px;
+        }
+
+        div.bcont {
+            margin-top: 3em;
+            padding: 1em;
+            background: rgba(255, 255, 255, 0.51);
+        }
+
+        div.ban_news>button {
+            background: #A0431B;
+            color: white;
+            width: 25%;
+            height: 50px;
+            border: 0px;
+            padding: 0.65em 1em;
+            font-size: 0.95em;
+            border-bottom: 3px solid #4E2412;
+            text-align: center;
+        }
+
+        /* 内容部分 */
+
+        div.content a {
+            color: rgba(0, 0, 0, 0.78);
+            ;
+        }
+
+        div.content {
+            margin-top: 50px;
+            margin-bottom: 100px;
+        }
+
+        div.news,
+        div.more {
+            width: 30px;
+            line-height: 24px;
+            display: inline-block;
+        }
+
+        div.news {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .news>h2 {
+            font-weight: normal;
+            font-size: 28px;
+            margin-bottom: 1em;
+        }
+
+        div.one,div.two{
+            display: flex;
+            margin-bottom: 50px;
+        }
+
+        div.left_news,
+        div.right_cont {
+            display: inline-block;
+
+        }
+
+        div.right_cont {
+            margin: 0 10px 0 20px;
+            padding: 0 0 0 20px;
+            border-left: 2px solid #3aa3f9;
+        }
+
+        div.right_cont>ul {
+            margin: 0
+        }
+
+        div.right_cont>ul>li {
+            padding: 5px;
+            list-style: none;
+        }
+
+        div.right_cont>ul>li>a.new {
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 14px;
+            line-height: 24px;
+            vertical-align: middle;
+        }
+
+        div.right_cont>ul>li>a.badge {
+            color: white
+        }
+
+        span.blue {
+            color: #3aa3f9;
+            margin: 0 10px;
+        }
     </style>
 </head>
+
 <body>
+    <!-- 首页头部 -->
     <header>
         <div class="container">
             <div class="top">
-                <h1>My Libary</h1>
-                <ul>
-                    <li><a href="javascript:;"><img src="./img/index/pin.png" alt=""><p>one reject</p></a></li>
-                    <li><a href="javascript:;"><img src="./img/index/email.png" alt=""><p>email</p></a></li>
-                    <li><a href="javascript:;"><img src="./img/index/telephone.png" alt=""><p>+6666 88</p></a></li>
-                </ul>   
+                <h1>Libary</h1>
+                <div class="rnav">
+                    <ul>
+                        <li><a href="javascript:;"><img src="./img/index/pin.png" alt="">
+                                <p>one reject</p>
+                            </a></li>
+                        <li><a href="javascript:;"><img src="./img/index/email.png" alt="">
+                                <p>email</p>
+                            </a></li>
+                        <li><a href="javascript:;"><img src="./img/index/telephone.png" alt="">
+                                <p>+6666 88</p>
+                            </a></li>
+                    </ul>
+                </div>
+
             </div>
             <div class="navbar navbar-expand-md navbg navbar-dark">
                 <!-- 小屏幕最右侧的小按钮-->
-                <button class="btn btn-primary navbar-toggler" data-toggle="collapse" data-target="#content">
+                <button class="btn btn-warning border-0 navbar-toggler" data-toggle="collapse" data-target="#content">
                     <span class="navbar-toggler-icon"></span></button>
                 <!-- 导航栏中的菜单，小屏幕隐藏（垂直显示），大屏幕横向现实-->
                 <div class="collapse navbar-collapse" id="content">
@@ -80,8 +211,129 @@
                     </ul>
                 </div>
             </div>
-            
+            <div class="ban_news">
+                <div class="bcont">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nam repellendus adipisicing elit.
+                    Nesciunt nam repellendus adipisicing elit. Nesciunt nam repellendus .
+                </div>
+                <button>ReadMore</button>
+            </div>
         </div>
     </header>
+
+    <!-- 首页内容 -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-6 col-sm-12">
+                    <div class="left_cont">
+                        <div class="one">
+                            <div class="left_news">
+                                <div class="news">
+                                    <h2><a href="javascript:;">最新消息</a></h2>
+                                </div>
+                                <div class="more">
+                                    <span><a href="javascript:;">更多+</a></span>
+                                </div>
+                            </div>
+                            <div class="right_cont">
+                                <ul>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-warning badge-pill mr-1" href="#">公告</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-danger badge-pill mr-1" href="#">新闻</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-danger badge-pill mr-1" href="#">新闻</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-danger badge-pill mr-1" href="#">新闻</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-warning badge-pill mr-1" href="#">公告</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-warning badge-pill mr-1" href="#">公告</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <div class="left_news">
+                                <div class="news">
+                                    <h2><a href="javascript:;">最新消息</a></h2>
+                                </div>
+                                <div class="more">
+                                    <span><a href="javascript:;">更多+</a></span>
+                                </div>
+                            </div>
+                            <div class="right_cont">
+                                <ul>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                    <li>
+                                        <span>01/16</span><span class="blue">|</span>
+                                        <a class="badge badge-primary badge-pill mr-1" href="javascript:;">购买</a>
+                                        <a class="new" href="javascript:;">图书馆部分服务布局调整的通知</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col col-lg-6 col-md-6 col-sm-6">
+                            <div>
+                                <img src="./img/index/newpic.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--     <div>
+        <iframe width="710" height="440" frameborder="0" name="ExpoonPanorama" allowfullscreen="true" scrolling="no" src="https://www.expoon.com/e/pb2x0h63vto/panorama"></iframe>
+    </div> -->
 </body>
+
 </html>
