@@ -4,7 +4,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <meta name="viewport" content="width=device-width,initial-scale-1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入boot的文件，引入顺序有要求-->
     <link rel="stylesheet" href="./css/bootstrap.css" />
     <script src="./js/jquery.min.js"></script>
@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="./css/index_media.css">
     <link rel="stylesheet" href="./css/login.css">
     <style>
+        body,
+        ul,
+        li,
+        p,
+        img {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
         /* 头部 */
         header {
             background: url('./img/index/books.jpg') no-repeat top center;
@@ -108,7 +121,7 @@
 
         div.content {
             margin-top: 50px;
-            margin-bottom: 100px;
+            /* margin-bottom: 100px; */
         }
 
         div.news,
@@ -172,11 +185,115 @@
             color: #3aa3f9;
             margin: 0 10px;
         }
-        
-        div.imgbox img{
+
+        .ibox {
             float: left;
-            width: 250px;
-            height: 250px;
+            width: 50%;
+            height: 50%;
+            padding: 10px;
+        }
+
+        div.imgbox img {
+            float: left;
+            transition: 1s
+        }
+        div.imgbox img:hover{
+            transform:scale(1.1);
+        }
+
+
+        /* 第二个版块 */
+        .serve {
+            min-height: 800px;
+            background: url(img/bjbg.png) no-repeat right bottom #00a4ff;
+            padding-bottom: 48px;
+            margin-bottom: 0px;
+            width: 100%;
+            max-height: 1600px;
+        }
+
+        .hr {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            /* background: pink; */
+            border-bottom: 2px solid white;
+            margin-bottom: 50px;
+        }
+
+        .hr2 {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            /* background: pink; */
+            border-bottom: 2px solid #00a4ff;
+            margin-bottom: 50px;
+        }
+
+        .start span {
+            position: absolute;
+            display: inline-block;
+            /* text-align: center; */
+            width: 220px;
+            background: #00a4ff;
+            color: white;
+            font-size: 40px;
+            left: 0;
+            top: 25px;
+            z-index: 10;
+        }
+
+        .start2 span {
+            position: absolute;
+            display: inline-block;
+            /* text-align: center; */
+            width: 220px;
+            background: white;
+            color: black;
+            font-size: 40px;
+            left: 0;
+            top: 25px;
+            z-index: 10;
+        }
+
+        .student ul>li,.teacher ul>li{
+            margin-bottom: 10px;
+        }
+
+        .student ul li.title,.teacher ul li.title  {
+            font-size: 18px;
+            color: #1353BD;
+            line-height: 50px;
+        }
+
+        .student ul li a,.teacher ul li a  {
+            color: rgba(0,0,0,0.78);
+            font-size: 14px;
+            line-height: 26px;
+        }
+        .student ul li a:hover,.teacher ul li a:hover{
+            text-decoration: underline !important;
+            color:#337ab7;
+        }  
+
+        .myborder {
+            border-radius: 1%;
+        }
+
+        .stu{
+            color: white;
+        }
+
+        /* 第三个板版块 */
+        .leftul li a{
+            color: rgba(0,0,0,0.78);
+            font-size: 14px;
+            line-height: 30px; 
+        }
+
+        .rightpic{
+            border-left: 1px solid #979797;
+            padding-left: 40px;
         }
     </style>
 </head>
@@ -228,7 +345,7 @@
         </div>
     </header>
 
-    <!-- 首页内容 -->
+    <!-- 首页内容 第一个版块 -->
     <div class="content">
         <div class="container">
             <div class="row">
@@ -278,6 +395,7 @@
                                 </ul>
                             </div>
                         </div>
+                        <!-- one结束 -->
                         <div class="two">
                             <div class="left_news">
                                 <div class="news">
@@ -322,19 +440,217 @@
                                 </ul>
                             </div>
                         </div>
+                        <!-- two结束 -->
                     </div>
                 </div>
                 <div class="col col-md-6 col-sm-12">
-                        <div class="imgbox">
-                            <img class="pr-3 pb-3" src="./img/index/newpic1.png" alt="">
-                            <img class="pb-3" src="./img/index/newpic2.png" alt="">
-                            <img class="pr-3" src="./img/index/newpic3.png" alt="">
-                            <img src="./img/index/newpic4.png" alt="">
+                    <div class="imgbox">
+                        <div class="ibox">
+                            <img width="230px" height="230px" src="./img/index/newpic1.png" alt="">
                         </div>
+                        <div class="ibox">
+                            <img width="230px" height="230px" src="./img/index/newpic2.png" alt="">
+                        </div>
+                        <div class="ibox">
+                            <img width="230px" height="230px" src="./img/index/newpic3.png" alt="">
+                        </div>
+                        <div class="ibox">
+                            <img width="230px" height="230px" src="./img/index/newpic4.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- row结束 -->
+        </div>
+    </div>
+
+    <!-- 首页内容第二个版块 热门服务 -->
+    <div class="serve">
+        <div class="container">
+            <div class="hr">
+                <div class="start">
+                    <span>热门服务</span>
+                </div>
+            </div>
+            <!-- hr结束 -->
+            <div class="row">
+                <div class="col col-lg-8 col-md-8 col-sm-12">
+                    <h3 class="stu">学生</h3>
+                    <div class="student pr-3">
+                        <ul class="row bg-white myborder">
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <a href="javascript:;"></a>
+                                    <li class="title">空间布局</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">图书借阅</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">馆际互借</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">阅读推广</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">设备设施</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">提升信息素养</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">常用软件与培训</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                            <li class="col col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <ul>
+                                    <li class="title">数学加工服务</li>
+                                    <li> <a href="javascript:;">馆藏分布</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 左边结束 -->
+                <div class="col col-lg-4 col-md-4 col-sm-12 ">
+                    <h3 class="stu">教师+研究生</h3>
+                    <div class="teacher pr-3">
+                        <ul class="row bg-white myborder">
+                            <li class="col col-lg-6 col-md-6 col-sm-6">
+                                <ul>
+                                    <a href="javascript:;"></a>
+                                    <li class="title">学科报告</li>
+                                    <li> <a href="javascript:;">学科竞争力分析报告</a></li>
+                                    <li> <a href="javascript:;">座位分布</a> </li>
+                                </ul>
+                            </li>
+                            <li class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <ul>
+                                    <a href="javascript:;"></a>
+                                    <li class="title">专利申请</li>
+                                    <li> <a href="javascript:;">专利咨询</a></li>
+                                    <li> <a href="javascript:;">相关培训</a> </li>
+                                    <li> <a href="javascript:;">专利数据库</a> </li>
+                                </ul>
+                            </li>
+                            <li class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <ul>
+                                    <a href="javascript:;"></a>
+                                    <li class="title">教学与培训</li>
+                                    <li> <a href="javascript:;">一小时讲座</a></li>
+                                    <li> <a href="javascript:;">定时讲座</a> </li>
+                                    <li> <a href="javascript:;">信息素养课</a> </li>
+                                    <li> <a href="javascript:;">信息素养能力评测</a> </li>
+                                </ul>
+                            </li>
+                            <li class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <ul>
+                                    <a href="javascript:;"></a>
+                                    <li class="title">写作支持</li>
+                                    <li> <a href="javascript:;">如何洞悉学科热点</a></li>
+                                    <li> <a href="javascript:;">如何进行文献调研</a> </li>
+                                    <li> <a href="javascript:;">学术规范与论文写作</a> </li>
+                                    <li> <a href="javascript:;">论文投稿指南</a> </li>
+                                    <li> <a href="javascript:;">文献管理软件</a> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- 首页内容第三个版块 馆藏资源 -->
+    <div class="resources">
+        <div class="container">
+            <div class="hr2">
+                <div class="start2">
+                    <span>馆藏资源</span>
+                </div>
+            </div>
+            <!-- hr2结束 -->
+            <div class="row">
+                <div class="col col-lg-2 col-md-12 col-sm-12">
+                    <ul class="leftul">
+                        <li><a href="javascript:;">图书/期刊</a></li>
+                        <li><a href="javascript:;">电子图书</a></li>
+                        <li><a href="javascript:;">电子期刊</a></li>
+                        <li><a href="javascript:;">数据库</a></li>
+                        <li><a href="javascript:;">学位论文</a></li>
+                        <li><a href="javascript:;">古籍</a></li>
+                        <li><a href="javascript:;">视频/音频</a></li>
+                        <li><a href="javascript:;">随书光盘</a></li>
+                        <li><a href="javascript:;">报纸</a></li>
+                        <li><a href="javascript:;">统计数据/研究数据</a></li>
+                        <li><a href="javascript:;">档案</a></li>
+                        <li><a href="javascript:;">工具与软件</a></li>               
+                    </ul>
+                </div>
+                <div class="col col-lg-10 col-md-12 col-sm-12">
+                    <div class="rightpic">
+                        <h3>文学图书奖系列</h3>
+                        <div class="row">
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic1.jpg" alt=""></div>
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic2.jpg" alt=""></div>
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic3.jpg" alt=""></div>
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic4.jpg" alt=""></div>
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic5.jpg" alt=""></div>
+                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic.png" alt=""></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!--     <div>
