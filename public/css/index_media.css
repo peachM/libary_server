@@ -22,7 +22,7 @@
 @media screen and (max-width: 767px) {
     div.top {
         background: white;
-        height: 150px;
+        height: 140px;
         display: block;
     }
 
@@ -67,6 +67,14 @@
 
     .teacher>ul>li{
         float: left;
+    }
+    .leftul li a{
+        /* display: inline-block; */
+        float: left;
+        margin-right: 20px;
+    }
+    .leftul{
+        margin-bottom: 100px;
     }
 
 }

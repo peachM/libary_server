@@ -28,6 +28,15 @@ SET time_zone = "+00:00";
 -- 表的结构 `new_book`
 --
 
+
+#服务器端口使用编码
+SET NAMES UTF8;
+#丢弃数据库，如果存在的话
+DROP DATABASE IF EXISTS libary;
+#创建数据库
+CREATE DATABASE libary CHARSET=UTF8;
+USE libary;
+
 CREATE TABLE `new_book` (
   `bid` int(11) NOT NULL,
   `title` varchar(20) DEFAULT NULL,

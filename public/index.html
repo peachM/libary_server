@@ -10,201 +10,17 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/index_media.css">
-    <link rel="stylesheet" href="./css/login.css">
     <style>
-        body,
-        ul,
-        li,
-        p,
-        img {
-            padding: 0;
-            margin: 0;
-        }
-
-        ul li {
-            list-style: none;
-        }
-
-        /* 头部 */
         header {
             background: url('./img/index/books.jpg') no-repeat top center;
             background-size: cover;
             min-height: 800px;
         }
 
-        /* logo */
-        div.top>h1 {
-            padding: 18px 50px;
-            font-size: 2.8em;
-            color: #A0431B;
-            font-family: 'Kreon', 'serif', 'mv boli';
-        }
-
-        div.rnav>ul {
-            list-style: none;
-        }
-
-        div.rnav>ul li {
-            float: left;
-            margin: 20px 50px 0 0;
-            text-align: center;
-        }
-
-        div.top>ul>li>p {
-            font-size: 0.85em;
-            color: #999;
-        }
-
-        div.top {
-            background: white;
-            height: 90px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        div.top>h1,
-        div.rnav>ul {
-            display: inline-block;
-        }
-
-        /* 导航栏 */
-        .navbg {
-            background: #ff7f38;
-            padding: 0px;
-        }
-
-        .navbg ul {
-            width: 100%;
-        }
-
-        .navbg ul>li {
-            width: 17%;
-            padding: 8px;
-        }
-
-        .navbg ul>li:hover {
-            background: #A0431B;
-        }
-
-        /* banner新闻 */
-        div.ban_news {
-            width: 40%;
-            float: right;
-            margin-top: 150px;
-        }
-
-        div.bcont {
-            margin-top: 3em;
-            padding: 1em;
-            background: rgba(255, 255, 255, 0.51);
-        }
-
-        div.ban_news>button {
-            background: #A0431B;
-            color: white;
-            width: 25%;
-            height: 50px;
-            border: 0px;
-            padding: 0.65em 1em;
-            font-size: 0.95em;
-            border-bottom: 3px solid #4E2412;
-            text-align: center;
-        }
-
-        /* 内容部分 */
-
-        div.content a {
-            color: rgba(0, 0, 0, 0.78);
-            ;
-        }
-
-        div.content {
-            margin-top: 50px;
-            /* margin-bottom: 100px; */
-        }
-
-        div.news,
-        div.more {
-            width: 30px;
-            line-height: 24px;
-            display: inline-block;
-        }
-
-        div.news {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .news>h2 {
-            font-weight: normal;
-            font-size: 28px;
-            margin-bottom: 1em;
-        }
-
-        div.one,
-        div.two {
-            display: flex;
-            margin-bottom: 50px;
-        }
-
-        div.left_news,
-        div.right_cont {
-            display: inline-block;
-
-        }
-
-        div.right_cont {
-            margin: 0 10px 0 20px;
-            padding: 0 0 0 20px;
-            border-left: 2px solid #3aa3f9;
-        }
-
-        div.right_cont>ul {
-            margin: 0
-        }
-
-        div.right_cont>ul>li {
-            padding: 5px;
-            list-style: none;
-        }
-
-        div.right_cont>ul>li>a.new {
-            white-space: nowrap;
-            overflow: hidden;
-            font-size: 14px;
-            line-height: 24px;
-            vertical-align: middle;
-        }
-
-        div.right_cont>ul>li>a.badge {
-            color: white
-        }
-
-        span.blue {
-            color: #3aa3f9;
-            margin: 0 10px;
-        }
-
-        .ibox {
-            float: left;
-            width: 50%;
-            height: 50%;
-            padding: 10px;
-        }
-
-        div.imgbox img {
-            float: left;
-            transition: 1s
-        }
-        div.imgbox img:hover{
-            transform:scale(1.1);
-        }
-
-
-        /* 第二个版块 */
         .serve {
-            min-height: 800px;
+            min-height: 700px;
             background: url(img/bjbg.png) no-repeat right bottom #00a4ff;
             padding-bottom: 48px;
             margin-bottom: 0px;
@@ -212,88 +28,17 @@
             max-height: 1600px;
         }
 
-        .hr {
+        .footer {
             position: relative;
             width: 100%;
-            height: 60px;
-            /* background: pink; */
-            border-bottom: 2px solid white;
-            margin-bottom: 50px;
-        }
-
-        .hr2 {
-            position: relative;
-            width: 100%;
-            height: 60px;
-            /* background: pink; */
-            border-bottom: 2px solid #00a4ff;
-            margin-bottom: 50px;
-        }
-
-        .start span {
-            position: absolute;
-            display: inline-block;
-            /* text-align: center; */
-            width: 220px;
-            background: #00a4ff;
-            color: white;
-            font-size: 40px;
-            left: 0;
-            top: 25px;
-            z-index: 10;
-        }
-
-        .start2 span {
-            position: absolute;
-            display: inline-block;
-            /* text-align: center; */
-            width: 220px;
-            background: white;
-            color: black;
-            font-size: 40px;
-            left: 0;
-            top: 25px;
-            z-index: 10;
-        }
-
-        .student ul>li,.teacher ul>li{
-            margin-bottom: 10px;
-        }
-
-        .student ul li.title,.teacher ul li.title  {
-            font-size: 18px;
-            color: #1353BD;
-            line-height: 50px;
-        }
-
-        .student ul li a,.teacher ul li a  {
-            color: rgba(0,0,0,0.78);
-            font-size: 14px;
-            line-height: 26px;
-        }
-        .student ul li a:hover,.teacher ul li a:hover{
-            text-decoration: underline !important;
-            color:#337ab7;
-        }  
-
-        .myborder {
-            border-radius: 1%;
-        }
-
-        .stu{
-            color: white;
-        }
-
-        /* 第三个板版块 */
-        .leftul li a{
-            color: rgba(0,0,0,0.78);
-            font-size: 14px;
-            line-height: 30px; 
-        }
-
-        .rightpic{
-            border-left: 1px solid #979797;
-            padding-left: 40px;
+            height: 150px;
+            background: #242d3c;
+            text-align: center;
+            width: 100% !important;
+            color: #ffffff;
+            padding: 0;
+            height: 288px;
+            background: url("./img/index/footerbg.png") no-repeat left 16% bottom rgb(17, 17, 73);
         }
     </style>
 </head>
@@ -617,7 +362,7 @@
             </div>
             <!-- hr2结束 -->
             <div class="row">
-                <div class="col col-lg-2 col-md-12 col-sm-12">
+                <div class="col col-lg-2 col-md-2 col-sm-12">
                     <ul class="leftul">
                         <li><a href="javascript:;">图书/期刊</a></li>
                         <li><a href="javascript:;">电子图书</a></li>
@@ -630,20 +375,51 @@
                         <li><a href="javascript:;">报纸</a></li>
                         <li><a href="javascript:;">统计数据/研究数据</a></li>
                         <li><a href="javascript:;">档案</a></li>
-                        <li><a href="javascript:;">工具与软件</a></li>               
+                        <li><a href="javascript:;">工具与软件</a></li>
                     </ul>
                 </div>
-                <div class="col col-lg-10 col-md-12 col-sm-12">
+                <div class="col col-lg-10 col-md-10 col-sm-12">
                     <div class="rightpic">
                         <h3>文学图书奖系列</h3>
                         <div class="row">
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic1.jpg" alt=""></div>
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic2.jpg" alt=""></div>
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic3.jpg" alt=""></div>
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic4.jpg" alt=""></div>
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic5.jpg" alt=""></div>
-                            <div class="col col-md-4 col-sm-6"><img src="img/index/artic.png" alt=""></div>
-                            
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img class="stretch" src="img/index/artic1.jpg" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">艾略特奖/The T.S. Eliot Prize</a>
+                                </div>
+                            </div>
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img src="img/index/artic2.jpg" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">布克奖/The Man Booker Prize</a>
+                                </div>
+                            </div>
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img src="img/index/artic3.jpg" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">龚古尔奖/Le prixGoncourt</a>
+                                </div>
+
+                            </div>
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img src="img/index/artic4.jpg" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">美国国家图书奖/National </br> Book Awards </a>
+                                </div>
+                            </div>
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img src="img/index/artic5.jpg" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">普利策小说奖/Pulitzer </br>Prize for Fiction </a>
+                                </div>
+                            </div>
+                            <div class="col col-md-4 col-sm-6 gcbox">
+                                <img src="img/index/artic.png" alt="">
+                                <div class="gccont">
+                                    <a href="javascript:;">了解更多+</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -651,6 +427,404 @@
         </div>
     </div>
 
+    <!-- 首页内容第四个版块 特色资源 -->
+    <div class="special">
+        <div class="container">
+            <div class="hr2">
+                <div class="start2">
+                    <span>特色资源</span>
+                </div>
+            </div>
+            <!-- hr2结束 -->
+            <p class="spmore pb-2">阅读更多 &gt;</p>
+            <ul class="row spbigbox">
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special1.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special2.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special3.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special4.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special5.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special6.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special7.png" alt=""></div>
+                    </div>
+                </li>
+                <li class="col col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="spebox">
+                        <div><img src="./img/index/special8.png" alt=""></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 首页内容第五个版块 学术交流 -->
+    <div class="study">
+        <div class="container">
+            <div class="hr2">
+                <div class="start2">
+                    <span>学术交流</span>
+                </div>
+            </div>
+            <!-- hr2结束 -->
+            <div class="stubigbox">
+                <ul class="row">
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stuone_top">
+                            <p class="stutitle green">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt1.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stutwo_top">
+                            <p class="stutitle blue">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt2.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stuthree_top">
+                            <p class="stutitle red">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt3.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stufour_top">
+                            <p class="stutitle yellow">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt4.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stufive_top">
+                            <p class="stutitle deepblue">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt5.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="col col-lg-5 col-md-5 col-sm-12 stuul">
+                        <div class="stusix_top">
+                            <p class="stutitle deepgreen">
+                                武昌工学院机构知识库<br>
+                                OPEN REPOSITORY
+                            </p>
+                        </div>
+                        <div class="stuone_btm">
+                            <p>为本校学着自助设立学术型个人主页提供便捷服务的网络平台。平台建站工具可由学者用户自行掌管，高度定制，随时更新，动态而全方位地展示在校学者的个人学术风采</p>
+                            <div class="btm_cont">
+                                <ul>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                    <li><span>元数据</span> <span>540,692</span></li>
+                                </ul>
+                                <img src="./img/index/jt6.png" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 首页第n个版块  活动&展览&讲座 -->
+
+    <!-- 首页第六个版块 阅读推荐and轮播图 -->
+    <div class="ready_groom">
+        <!-- <div class="container"> -->
+        <div class="hr2 myread">
+            <div class="start2">
+                <span>阅读推荐</span>
+            </div>
+        </div>
+        <!-- hr2结束 -->
+        <ul class="r_g">
+            <li class="ready">
+                新书通报
+            </li>
+            <li class="groom">
+                教授推荐
+            </li>
+        </ul>
+
+        <div class="new_info">
+            <div class="bigreadybox">
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">1金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">2金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">3金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">4金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">5金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">6金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">7金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">8金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">9金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+                <div class="readybox">
+                    <img src="./img/index/book1.jpg" alt="">
+                    <div class="title">10金石书画人物传记资料义刊 1-8 宋志英，潘竹撰编</div>
+                    <div class="rearch">
+                        索书号：K825.75/417:1
+                        K825.72/417.2 K825.72/417:3
+                        K825.72/417:4 K825.72/417:5
+                        K825.72/417:6 K825.72/417:7
+                        K825.72/417:8
+                    </div>
+                    <div class="rearch">
+                        宋志英，1972- 选编 潘竹 选编 北京 国家图书馆出版社2015
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container btnmore">
+            <div class="prev_next">
+                <div class="pre">
+                    <img src="./img/index/prev.png" alt="">
+                </div>
+                <div class="next">
+                    <img src="./img/index/next.png" alt="">
+                </div>
+            </div>
+            <div class="jumpmore">
+                <span>浏览更多新书</span>
+                <img src="./img/index/right1.png" width="20px">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 图书馆底部 -->
+    <div class="footer">
+        <div class="container">
+            <div class="indexfoot">
+                <p class="pb-5"> ♫本周(2019.02.25-03.03)闭馆音乐曲目：River flows in you </p>
+                <div class="pb-5">
+                    <a href="javascript:;">武昌工学院</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">CALIS</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">CASHL</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">大学图书馆学报</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">文理中心</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">图书委</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">馆员空间</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">图书馆邮箱</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">分管流通信息</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">馆长信箱</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">常用链接</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">网站地图</a> &nbsp;|&nbsp;
+                    <a href="javascript:;">回到旧版</a>
+                </div>
+                <p>版权所有 2012-2018 武昌工学院图书馆</p>
+            </div>
+        </div>
+    </div>
 
 
     <!--     <div>
