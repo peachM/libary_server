@@ -17,8 +17,8 @@ app.use(cors({
   credentials:true
 }))
 
-// 功能一：新书页面
-app.get("/newbook",(req,res)=>{
+// 功能一：新书推荐--热门浏览页面
+app.get("/Newbook",(req,res)=>{
   var pno = req.query.pno;
   var pageSize = req.query.pageSize;
   if(!pno){
@@ -28,7 +28,7 @@ app.get("/newbook",(req,res)=>{
     pageSize = 10;
   }
   // 3. 创建sql语句
-  var sql = " SELECT * FROM new_book LIMIT ?,?";
+  var sql = " SELECT * FROM book LIMIT ?,?";
   var ps = parseInt(pageSize);
   var offset = (pno-1)*pageSize;
   pool.query(sql,[offset,ps],(err,result)=>{
@@ -38,4 +38,13 @@ app.get("/newbook",(req,res)=>{
   // 4. 返回
 })
 
-
+// 功能二首页轮播图
+app.get("/Index",(req,res)=>{
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM newbook";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+  // 4. 返回
+})
