@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入boot的文件，引入顺序有要求-->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/book_bulletin.css">
+    <style>
+        div.xxbg{
+            height: 620px;
+            background: url(img/bjbg.png) no-repeat scroll 0 0 #ff7f38;
+        }
+    </style>
+</head>
+
+<body>
+    <!--导航栏部分-->
+    <div class="nb_top">
+        <div class="mycontainer">
+            <div class="left">
+                <img class="nbmylogo" src="img/logo.png" alt="" />
+                <span> · 新书通报</span>
+            </div>
+            <div class="right">
+                <a href="#">新手通报</a>
+                <a href="#">热门浏览</a>
+                <a href="#">图书馆首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图片部分-->
+    <div class="xxbg">
+        <div class="mycontainer">
+            <div class="book">
+                <span>新书驾到</span>
+            </div>
+            <div class="input-flex">
+                <input class="input" type="text" style="width:750px;height:55px" />
+                <div class="input">
+                    <select>
+                        <option value="">书名</option>
+                        <option value="">著者</option>
+                        <option value="">ISBN</option>
+                        <option value="">出版社</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <button>搜索</button>
+                </div>
+            </div>
+
+            <div class="prev_next">
+                <div class="prev"><img src="./img/nbook/left.png" alt=""></div>
+                <!-- 轮播图 -->
+                <div class="tempwrap">
+                    <!-- 轮播图 -->
+                    <div class="wrap">
+                        <img src="./img/index/book1.jpg" alt="">
+                        <img src="./img/index/book1.jpg" alt="">
+                        <img src="./img/index/book1.jpg" alt="">
+                        <img src="./img/index/book1.jpg" alt="">
+                        <img src="./img/index/book1.jpg" alt="">
+                        <img src="./img/index/book1.jpg" alt="">
+                    </div>
+                    <!-- 左箭头 -->
+                    <!-- 右箭头 -->
+                    <div class="next"><img src="./img/nbook/right.png" alt=""></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 内容部分 -->
+    <div class="mycontainer">
+        <!-- 左边分类浏览 -->
+        <div class="browsing">
+            <div class="browsing_title">
+                分类浏览
+            </div>
+            <div class="browsing_label">
+                <label>按月浏览</label>
+                <select>
+                    <option value="2019">2019</option>
+                    <option value="2019">2018</option>
+                    <option value="2019">2017</option>
+                </select>
+                <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <button>按月浏览</button>
+            </div>
+            <div class="browsing_label">
+                <label>按馆藏址浏览</label>
+                <select id="address">
+                    <option value="china">中文</option>
+                    <option value="computer">计算机</option>
+                    <option value="english">英文</option>
+                    <option value="education">教育</option>
+                </select>
+                <button>按馆藏址浏览</button>
+            </div>
+            <div class="browsing_detail">
+                当前显示：馆址(中文);
+            </div>
+            <div class="browing_order">
+                排序方式：
+                <span>上架时间</span>|
+                <span><a href="javascript:;">分类号</a></span>|
+                <span><a href="javascript:;">题名</a></span>|
+                <span><a href="javascript:;">作者</a></span>|
+                <span><a href="javascript:;">关注热门程度</a></span>
+            </div>
+
+            <!-- 所有新书列表 -->
+            <div class="booklist">
+                <ul>
+                    <li class="bookitem">
+                        <div class="book_img"><img src="./img/book/English.jpg" alt=""></div>
+                        <div class="book_intr">
+                            <a href="javascript;">中国南方文化藏版丝路文化</a>
+                            <p>赖永海 主编 张立玉,16-961-著</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 右边热门关注图书榜 -->
+        <div class="hot_follow">
+            <div class="follow_title">
+                <a href="javascript:;">热门关注图书榜</a>
+            </div>
+            <div class="contents">
+                <!-- 第一本书 -->
+                <div class="content">
+                    <div class="bookimg">
+                        <img src="img/book/yuejingdeliliang.png" alt="" />
+                    </div>
+                    <div class="nbook">
+                        <ul>
+                            <li><a href="javascript:;">越境的力量 历史与思想论集 盛嘉著</a></li>
+                            <li>作者：盛嘉 著</li>
+                            <li>浏览次数：76</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

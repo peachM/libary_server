@@ -17,8 +17,8 @@ app.use(cors({
   credentials:true
 }))
 
-// 功能一：新书推荐--热门浏览页面
-app.get("/Newbook",(req,res)=>{
+// 功能一：新书推荐--热门浏览页面/分业
+app.get("/Hotbook",(req,res)=>{
   var pno = req.query.pno;
   var pageSize = req.query.pageSize;
   if(!pno){
@@ -38,7 +38,7 @@ app.get("/Newbook",(req,res)=>{
   // 4. 返回
 })
 
-// 功能二首页轮播图
+// 功能二首页轮播图页面渲染
 app.get("/Index",(req,res)=>{
   // 3. 创建sql语句
   var sql = " SELECT * FROM newbook";
@@ -47,4 +47,14 @@ app.get("/Index",(req,res)=>{
     res.send({code:1,data:result});
   })
   // 4. 返回
+})
+
+// 功能三新书上架页面渲染
+app.get("/Newbook",(req,res)=>{
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM newbook";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
 })
