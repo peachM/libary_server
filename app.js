@@ -87,13 +87,15 @@ app.get("/Login",(req,res)=>{
     }else{
        //将用户登录凭证保存在服务器端 session对象中
        var uid = result[0].uid;//获取当前用户id
+       console.log(uid);
        req.session.uid = uid; //保存session
+       console.log(req.session.uid);
        res.send({code:1,msg:"登录成功"});
     }
   })
 })
 
-// 功能四：点击某一本新书跳转到详情页面
+// 功能五：点击某一本新书跳转到详情页面
 app.get('/Bookdetail',(req,res)=>{
   var nid = req.query.nid;
   var sql = "SELECT * FROM newbook WHERE nid = ?"
@@ -103,3 +105,210 @@ app.get('/Bookdetail',(req,res)=>{
     res.send({code:1,data:result});
   })
 });
+
+// 功能六：根据书名，搜索所有书籍
+app.get("/Search",(req,res)=>{
+  var key = req.query.key;
+  var pno = req.query.pno;
+  var pageSize = req.query.pageSize;
+  if(!pno){
+    pno = 1;
+  }
+  if(!pageSize){
+    pageSize = 10;
+  }
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM book WHERE CONCAT(title,author,press,ISBN) LIKE ? LIMIT ?,?";
+  var ps = parseInt(pageSize);
+  var offset = (pno-1)*pageSize;
+  pool.query(sql,["%"+key+"%",offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  });
+  // 4. 返回
+});
+
+// 功能七：获取用户名列表
+/* app.get("/User",(req,res)=>{
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM user";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+}) */
+
+app.get("/User",(req,res)=>{
+  var pno = req.query.pno;
+  var pageSize = req.query.pageSize;
+  if(!pno){
+    pno = 1;
+  }
+  if(!pageSize){
+    pageSize = 10;
+  }
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM user LIMIT ?,?";
+  var ps = parseInt(pageSize);
+  var offset = (pno-1)*pageSize;
+  pool.query(sql,[offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+  // 4. 返回
+})
+
+
+// 功能八：根据图书分类求每类图书的个数
+app.get("/Classify",(req,res)=>{
+  var classify = req.query.classify;
+  var sql = "SELECT count(classify) as count from book where classify = ?"
+  pool.query(sql,[classify],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+});
+
+
+// 功能九：管理员 新增用户
+app.post("/Addstudent",(req,res)=>{
+  console.log(req.body)
+  var uid = req.body.uid;
+  var upwd = req.body.upwd;
+  var name = req.body.name;
+  var sex = req.body.sex;
+  var tel = req.body.tel;
+  var dept = req.body.dept;
+  var uclass = req.body.uclass;
+  var sql = "INSERT INTO user VALUES (?,?,?,?,?,?,?,null,null,null)"
+  pool.query(sql,[uid,upwd,name,sex,tel,dept,uclass],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"插入成功！"});
+    }else{
+      res.send({code:-1,msg:"插入失败！"});
+    }
+  })
+});
+
+// 功能十：管理员 修改用户信息
+app.post("/Edit",(req,res)=>{
+  console.log(req.body)
+  var uid = req.body.uid;
+  var upwd = req.body.upwd;
+  var name = req.body.name;
+  var tel = req.body.tel;
+  var dept = req.body.dept;
+  var uclass = req.body.uclass;
+  var sql = "UPDATE user SET upwd=?,name=?,tel=?,dept=?,uclass=? where uid=?";
+  pool.query(sql,[upwd,name,tel,dept,uclass,uid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功！"});
+    }else{
+      res.send({code:-1,msg:"更新失败！"});
+    }
+  })
+})
+//功能十一： 根据id 编辑当前用户信息
+app.get('/getUser', (req, res) => {
+  var uid = req.query.uid;
+  var sql = `SELECT upwd,name,tel,dept,uclass FROM user WHERE uid=?`;
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+// 功能十二： 根据id 删除当前用户信息
+app.get('/delUser',(req,res) => {
+  var uid = req.query.uid;
+  var sql = `DELETE FROM user WHERE uid =?`;
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"删除成功！"});
+    }else{
+      res.send({code:-1,msg:"删除失败！"});
+    }
+  })
+})
+
+// 功能十三： 根据关键字查找用户信息
+app.get("/userSearch",(req,res)=>{
+  var key = req.query.key;
+  var upno = req.query.upno;
+  var upageSize = req.query.upageSize;
+  if(!upno){
+    upno = 1;
+  }
+  if(!upageSize){
+    upageSize = 50;
+  }
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM user WHERE CONCAT(uid,name,dept,uclass) LIKE ? LIMIT ?,?";
+  var ps = parseInt(upageSize);
+  var offset = (upno-1)*upageSize;
+  pool.query(sql,["%"+key+"%",offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  });
+  // 4. 返回
+});
+
+/* // 功能十四：借阅功能
+app.post("/Borrow",(req,res)=>{
+  // var uid = req.session.uid;
+  var bookname = req.body.bookname;
+  var borrowdate = req.body.borrowdate;
+  var Ereturndate = req.body.Ereturndate;
+  var sql = "INSERT INTO borrow VALUES(null,?,?,?,null,null)";
+    pool.query(sql,[bookname,borrowdate,Ereturndate],(err,result)=>{
+      if(err)throw err;
+      if(result.affectedRows > 0){
+        res.send({code:1,msg:"添加成功"});
+      }else{
+        res.send({code:-1,msg:"添加失败"});
+      }
+    })
+}) */
+
+app.post("/Borrow",(req,res)=>{
+  if(!req.session.uid){
+    res.send({code:-1,msg:"请登录"});
+    return;
+  }
+  var uid = req.session.uid;
+  var bookname = req.body.bookname;
+  var borrowdate = req.body.borrowdate;
+  var Ereturndate = req.body.Ereturndate;
+
+var sql = "SELECT * FROM borrow WHERE uid = ?"
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    var sql = "INSERT INTO borrow VALUES(null,?,?,?,null,null,?)";
+    pool.query(sql,[bookname,borrowdate,Ereturndate,uid],(err,result)=>{
+      if(err)throw err;
+      if(result.affectedRows > 0){
+        res.send({code:1,msg:"添加成功"});
+      }else{
+        res.send({code:-1,msg:"添加失败"});
+      }
+    })
+  })
+  
+})
+
+// 功能十五： 渲染借阅页面
+app.get("/getBorrow",(req,res)=>{
+  if(!req.session.uid){
+    res.send({code:-1,msg:"请登录"});
+    return;
+  }
+  var uid = req.session.uid;
+  var sql = " SELECT * FROM borrow WHERE uid = ?";
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
