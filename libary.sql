@@ -110,24 +110,6 @@ INSERT INTO book VALUES
 
 /* 中文、英文、教育学、经济科学、计算机 */
 
-/* #图书分类表
-CREATE TABLE book_classify(
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  classify VARCHAR(20),
-  count INT,
-  FOREIGN KEY(id) references book(bid)
-);
-
-
-#书籍简介表（查书号、内容简介、作者简介、目录）
-CREATE TABLE book_in(
-	sid INT,
-	ISBN VARCHAR(20),
-	content_intro VARCHAR(500),
-	author_intro VARCHAR(200),
-	catalog VARCHAR(500),
-	FOREIGN KEY(sid) references book(bid)
-); */
 
 /* 新书表 */
 CREATE TABLE newbook(
@@ -186,3 +168,27 @@ CREATE TABLE borrow(
 );
   -- uid VARCHAR(10),
   -- FOREIGN KEY(uid) references user(uid)  
+
+# 读者意见表
+  CREATE TABLE reader_advise(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uid VARCHAR(20),
+    content VARCHAR(200),
+    time VARCHAR(20)
+  )
+
+# 管理员信息表
+#管理员信息表（工作号、姓名、性别、电话、家庭住址、备注）
+CREATE TABLE managerinfo(
+  id INT PRIMARY KEY AUTO_INCREMENT, 
+  workid VARCHAR(20),
+  pswd VARCHAR(20) DEFAULT 'admin',
+  name VARCHAR(20),
+  sex VARCHAR(5),
+  tel VARCHAR(20),
+  address VARCHAR(50),
+  remark VARCHAR(100)
+)
+
+INSERT INTO managerinfo VALUES
+(null,"admin","admin","Monika","女","13845678915","湖北省武汉市洪山区白沙洲大道110号张家湾",null);

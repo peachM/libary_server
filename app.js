@@ -105,6 +105,7 @@ app.get('/Bookdetail',(req,res)=>{
     res.send({code:1,data:result});
   })
 });
+// 
 
 // 功能六：根据书名，搜索所有书籍
 app.get("/Search",(req,res)=>{
@@ -282,8 +283,7 @@ app.post("/Borrow",(req,res)=>{
   var bookname = req.body.bookname;
   var borrowdate = req.body.borrowdate;
   var Ereturndate = req.body.Ereturndate;
-
-var sql = "SELECT * FROM borrow WHERE uid = ?"
+  var sql = "SELECT * FROM borrow WHERE uid = ?"
   pool.query(sql,[uid],(err,result)=>{
     if(err) throw err;
     var sql = "INSERT INTO borrow VALUES(null,?,?,?,null,null,?)";
@@ -295,8 +295,7 @@ var sql = "SELECT * FROM borrow WHERE uid = ?"
         res.send({code:-1,msg:"添加失败"});
       }
     })
-  })
-  
+  })  
 })
 
 // 功能十五： 渲染借阅页面
@@ -310,5 +309,110 @@ app.get("/getBorrow",(req,res)=>{
   pool.query(sql,[uid],(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
+  })
+})
+
+// 功能十六： 管理员 借阅记录列表
+app.get("/allBorrow",(req,res)=>{
+  // 3. 创建sql语句
+  var sql = "SELECT * FROM borrow";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+// 借阅列表：根据关键字 搜索
+app.get("/BorrowSearch",(req,res)=>{
+  var key = req.query.key;
+  var upno = req.query.upno;
+  var upageSize = req.query.upageSize;
+  if(!upno){
+    upno = 1;
+  }
+  if(!upageSize){
+    upageSize = 50;
+  }
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM borrow WHERE uid LIKE ? LIMIT ?,?";
+  var ps = parseInt(upageSize);
+  var offset = (upno-1)*upageSize;
+  pool.query(sql,["%"+key+"%",offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  });
+  // 4. 返回
+});
+
+// 功能十七：读者意见表的插入
+app.post("/reader",(req,res)=>{
+  if(!req.session.uid){
+    res.send({code:-1,msg:"请登录"});
+    return;
+  }
+  var uid = req.session.uid;
+  var content = req.body.content;
+  var time = req.body.time;
+  var sql = "SELECT * FROM reader_advise WHERE uid = ?"
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    var sql = "INSERT INTO reader_advise VALUES(null,?,?,?)";
+    pool.query(sql,[uid,content,time],(err,result)=>{
+      if(err)throw err;
+      if(result.affectedRows > 0){
+        res.send({code:1,msg:"添加成功"});
+      }else{
+        res.send({code:-1,msg:"添加失败"});
+      }
+    })
+  })  
+})
+
+// 功能十八：管理员 读者意见列表渲染
+app.get("/Readerlist",(req,res)=>{
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM reader_advise";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+// 读者列表：根据关键字 搜索
+app.get("/ReaderSearch",(req,res)=>{
+  var key = req.query.key;
+  var upno = req.query.upno;
+  var upageSize = req.query.upageSize;
+  if(!upno){
+    upno = 1;
+  }
+  if(!upageSize){
+    upageSize = 50;
+  }
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM reader_advise WHERE uid LIKE ? LIMIT ?,?";
+  var ps = parseInt(upageSize);
+  var offset = (upno-1)*upageSize;
+  pool.query(sql,["%"+key+"%",offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  });
+  // 4. 返回
+});
+
+// 功能五：管理员登录
+app.get("/ManagerLogin",(req,res)=>{
+  var workid = req.query.workid;
+  var pswd = req.query.pswd
+  var sql = "SELECT * FROM managerinfo WHERE workid = ? AND pswd = ?";
+  pool.query(sql,[workid,pswd],(err,result)=>{
+    if(err) throw err;
+    if(result.length == 0){
+      res.send({code:-1,msg:"学号或密码有误"})
+      console.log({code:-1,msg:"学号或密码有误"});
+    }else{
+      res.send({code:1,msg:"登录成功"})
+       console.log({code:1,msg:"登录成功"});
+    }
   })
 })
