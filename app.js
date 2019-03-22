@@ -57,7 +57,7 @@ app.get("/Hotbook",(req,res)=>{
 // 功能二首页轮播图页面渲染
 app.get("/Index",(req,res)=>{
   // 3. 创建sql语句
-  var sql = " SELECT * FROM newbook";
+  var sql = " SELECT * FROM newbook ORDER BY entry_time DESC";
   pool.query(sql,(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
@@ -68,7 +68,7 @@ app.get("/Index",(req,res)=>{
 // 功能三新书上架页面渲染
 app.get("/Newbook",(req,res)=>{
   // 3. 创建sql语句
-  var sql = " SELECT * FROM newbook";
+  var sql = " SELECT * FROM newbook ORDER BY entry_time ASC";
   pool.query(sql,(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
@@ -161,10 +161,19 @@ app.get("/User",(req,res)=>{
 
 
 // 功能八：根据图书分类求每类图书的个数
-app.get("/Classify",(req,res)=>{
+/* app.get("/Classify",(req,res)=>{
   var classify = req.query.classify;
   var sql = "SELECT count(classify) as count from book where classify = ?"
   pool.query(sql,[classify],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+}); */
+// select classify ,count(*) as total from newbook group by classify having count(1)>1; 
+app.get("/Classify",(req,res)=>{
+  // var classify = req.query.classify;
+  var sql = "SELECT classify ,count(*) as total from book group by classify";
+  pool.query(sql,(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
   })
@@ -215,6 +224,15 @@ app.post("/Edit",(req,res)=>{
 app.get('/getUser', (req, res) => {
   var uid = req.query.uid;
   var sql = `SELECT upwd,name,tel,dept,uclass FROM user WHERE uid=?`;
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+app.get("/getInfo",(req,res) =>{
+  var uid = req.query.uid;
+  var sql = `SELECT uid,name,sex,tel,dept,uclass,remark FROM user WHERE uid=?`;
   pool.query(sql,[uid],(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
@@ -400,7 +418,7 @@ app.get("/ReaderSearch",(req,res)=>{
   // 4. 返回
 });
 
-// 功能五：管理员登录
+// 功能十九：管理员登录
 app.get("/ManagerLogin",(req,res)=>{
   var workid = req.query.workid;
   var pswd = req.query.pswd
@@ -414,5 +432,25 @@ app.get("/ManagerLogin",(req,res)=>{
       res.send({code:1,msg:"登录成功"})
        console.log({code:1,msg:"登录成功"});
     }
+  })
+})
+
+// 功能二十： 新书页面 按月份查找书籍
+app.get("/month",(req,res)=>{
+  var key = req.query.key;
+  // 3. 创建sql语句
+  var sql = " SELECT * FROM book WHERE entry_time LIKE ?";
+  pool.query(sql,["%"+key+"%"],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  });
+});
+// 功能二十一： 新书页面 按图书分类查询书籍
+app.post("/classifykey",(req,res)=>{
+  var key = req.body.key;
+  var sql = "SELECT * FROM book WHERE classify LIKE ?";
+  pool.query(sql,["%"+key+"%"],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
   })
 })
