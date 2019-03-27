@@ -33,8 +33,36 @@ const bodyParser = require("body-parser");
 //8:配置对特殊 json是否是自动转换 不转换
 app.use(bodyParser.urlencoded({extended:false}))
 
+
+
+app.get("/getHotbook",(req,res)=>{
+  var sql = "SELECT * FROM book WHERE state = 1";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result})
+  })
+})
 // 功能一：新书推荐--热门浏览页面/分业
 app.get("/Hotbook",(req,res)=>{
+  var pno = req.query.pno;
+  var pageSize = req.query.pageSize;
+  if(!pno){
+    pno = 1;
+  }
+  if(!pageSize){
+    pageSize = 10;
+  }
+  var sql = "SELECT * FROM book WHERE state=1 LIMIT ?,?";
+  var ps = parseInt(pageSize);
+  var offset = (pno-1)*pageSize;
+  pool.query(sql,[offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+// 功能二：管理员新书信息
+app.get("/Allbookinfo",(req,res)=>{
   var pno = req.query.pno;
   var pageSize = req.query.pageSize;
   if(!pno){
@@ -54,7 +82,7 @@ app.get("/Hotbook",(req,res)=>{
   // 4. 返回
 })
 
-// 功能二首页轮播图页面渲染
+// 功能三：首页轮播图页面渲染
 app.get("/Index",(req,res)=>{
   // 3. 创建sql语句
   var sql = " SELECT * FROM newbook ORDER BY entry_time DESC";
@@ -65,7 +93,7 @@ app.get("/Index",(req,res)=>{
   // 4. 返回
 })
 
-// 功能三新书上架页面渲染
+// 功能四：新书上架页面渲染
 app.get("/Newbook",(req,res)=>{
   // 3. 创建sql语句
   var sql = " SELECT * FROM newbook ORDER BY entry_time ASC";
@@ -75,7 +103,7 @@ app.get("/Newbook",(req,res)=>{
   })
 })
 
-// 功能四用户登录
+// 功能五：用户登录
 app.get("/Login",(req,res)=>{
   var uid = req.query.uid;
   var upwd = req.query.upwd
@@ -95,7 +123,7 @@ app.get("/Login",(req,res)=>{
   })
 })
 
-// 功能五：点击某一本新书跳转到详情页面
+// 功能六：点击某一本新书跳转到详情页面
 app.get('/Bookdetail',(req,res)=>{
   var nid = req.query.nid;
   var sql = "SELECT * FROM newbook WHERE nid = ?"
@@ -105,9 +133,18 @@ app.get('/Bookdetail',(req,res)=>{
     res.send({code:1,data:result});
   })
 });
-// 
 
-// 功能六：根据书名，搜索所有书籍
+// 功能七：全部书籍树跳转到详情页面
+app.get("/Alldetail",(req,res)=>{
+  var bid = req.query.bid;
+  var sql = "SELECT * FROM book WHERE bid = ?"
+  pool.query(sql,[bid],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+  })
+})
+
+// 功能八：根据书名，搜索所有书籍
 app.get("/Search",(req,res)=>{
   var key = req.query.key;
   var pno = req.query.pno;
@@ -129,7 +166,7 @@ app.get("/Search",(req,res)=>{
   // 4. 返回
 });
 
-// 功能七：获取用户名列表
+// 功能九：获取用户名列表
 /* app.get("/User",(req,res)=>{
   // 3. 创建sql语句
   var sql = " SELECT * FROM user";
@@ -160,7 +197,7 @@ app.get("/User",(req,res)=>{
 })
 
 
-// 功能八：根据图书分类求每类图书的个数
+// 功能十：根据图书分类求每类图书的个数
 /* app.get("/Classify",(req,res)=>{
   var classify = req.query.classify;
   var sql = "SELECT count(classify) as count from book where classify = ?"
@@ -180,7 +217,7 @@ app.get("/Classify",(req,res)=>{
 });
 
 
-// 功能九：管理员 新增用户
+// 功能十一：管理员 新增用户
 app.post("/Addstudent",(req,res)=>{
   console.log(req.body)
   var uid = req.body.uid;
@@ -201,7 +238,7 @@ app.post("/Addstudent",(req,res)=>{
   })
 });
 
-// 功能十：管理员 修改用户信息
+// 功能十二：管理员 修改用户信息
 app.post("/Edit",(req,res)=>{
   console.log(req.body)
   var uid = req.body.uid;
@@ -220,7 +257,7 @@ app.post("/Edit",(req,res)=>{
     }
   })
 })
-//功能十一： 根据id 编辑当前用户信息
+//功能十三： 根据id 编辑当前用户信息
 app.get('/getUser', (req, res) => {
   var uid = req.query.uid;
   var sql = `SELECT upwd,name,tel,dept,uclass FROM user WHERE uid=?`;
@@ -239,7 +276,7 @@ app.get("/getInfo",(req,res) =>{
   })
 })
 
-// 功能十二： 根据id 删除当前用户信息
+// 功能十四： 根据id 删除当前用户信息
 app.get('/delUser',(req,res) => {
   var uid = req.query.uid;
   var sql = `DELETE FROM user WHERE uid =?`;
@@ -253,7 +290,7 @@ app.get('/delUser',(req,res) => {
   })
 })
 
-// 功能十三： 根据关键字查找用户信息
+// 功能十五： 根据关键字查找用户信息
 app.get("/userSearch",(req,res)=>{
   var key = req.query.key;
   var upno = req.query.upno;
@@ -275,7 +312,7 @@ app.get("/userSearch",(req,res)=>{
   // 4. 返回
 });
 
-/* // 功能十四：借阅功能
+/* // 功能十六：借阅功能
 app.post("/Borrow",(req,res)=>{
   // var uid = req.session.uid;
   var bookname = req.body.bookname;
@@ -316,7 +353,7 @@ app.post("/Borrow",(req,res)=>{
   })  
 })
 
-// 功能十五： 渲染借阅页面
+// 功能十七： 渲染借阅页面
 app.get("/getBorrow",(req,res)=>{
   if(!req.session.uid){
     res.send({code:-1,msg:"请登录"});
@@ -330,7 +367,7 @@ app.get("/getBorrow",(req,res)=>{
   })
 })
 
-// 功能十六： 管理员 借阅记录列表
+// 功能十八： 管理员 借阅记录列表
 app.get("/allBorrow",(req,res)=>{
   // 3. 创建sql语句
   var sql = "SELECT * FROM borrow";
@@ -340,7 +377,7 @@ app.get("/allBorrow",(req,res)=>{
   })
 })
 
-// 借阅列表：根据关键字 搜索
+// 功能十九：借阅列表：根据关键字 搜索
 app.get("/BorrowSearch",(req,res)=>{
   var key = req.query.key;
   var upno = req.query.upno;
@@ -362,7 +399,7 @@ app.get("/BorrowSearch",(req,res)=>{
   // 4. 返回
 });
 
-// 功能十七：读者意见表的插入
+// 功能二十：读者意见表的插入
 app.post("/reader",(req,res)=>{
   if(!req.session.uid){
     res.send({code:-1,msg:"请登录"});
@@ -386,7 +423,7 @@ app.post("/reader",(req,res)=>{
   })  
 })
 
-// 功能十八：管理员 读者意见列表渲染
+// 功能二十一：管理员 读者意见列表渲染
 app.get("/Readerlist",(req,res)=>{
   // 3. 创建sql语句
   var sql = " SELECT * FROM reader_advise";
@@ -396,7 +433,7 @@ app.get("/Readerlist",(req,res)=>{
   })
 })
 
-// 读者列表：根据关键字 搜索
+// 功能二十二：读者列表：根据关键字 搜索
 app.get("/ReaderSearch",(req,res)=>{
   var key = req.query.key;
   var upno = req.query.upno;
@@ -418,7 +455,7 @@ app.get("/ReaderSearch",(req,res)=>{
   // 4. 返回
 });
 
-// 功能十九：管理员登录
+// 功能二十三：管理员登录
 app.get("/ManagerLogin",(req,res)=>{
   var workid = req.query.workid;
   var pswd = req.query.pswd
@@ -435,7 +472,7 @@ app.get("/ManagerLogin",(req,res)=>{
   })
 })
 
-// 功能二十： 新书页面 按月份查找书籍
+// 功能二十四： 新书页面 按月份查找书籍
 app.get("/month",(req,res)=>{
   var key = req.query.key;
   // 3. 创建sql语句
@@ -445,12 +482,69 @@ app.get("/month",(req,res)=>{
     res.send({code:1,data:result});
   });
 });
-// 功能二十一： 新书页面 按图书分类查询书籍
+// 功能二十五： 新书页面 按图书分类查询书籍
 app.post("/classifykey",(req,res)=>{
   var key = req.body.key;
   var sql = "SELECT * FROM book WHERE classify LIKE ?";
   pool.query(sql,["%"+key+"%"],(err,result)=>{
     if(err) throw err;
     res.send({code:1,data:result});
+  })
+})
+
+// 功能二十六： 修改管理员密码
+app.post("/password",(req,res)=>{
+  var pswd = req.body.pswd;
+  var sql = "UPDATE managerinfo SET pswd=?";
+  pool.query(sql,[pswd],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功！"});
+    }else{
+      res.send({code:-1,msg:"更新失败！"});
+    }
+  })
+})
+
+// 功能二十七：书籍的下架功能
+app.post("/Lowershelf",(req,res)=>{
+  var bid = req.body.bid;
+  var sql = "UPDATE book SET state=0 where bid = ?";
+  pool.query(sql,[bid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功！"});
+    }else{
+      res.send({code:-1,msg:"更新失败！"});
+    }
+  })
+})
+
+// 功能二十八：上架功能
+app.post("/Uppershelf",(req,res)=>{
+  var bid = req.body.bid;
+  var sql = "UPDATE book SET state=1 where bid = ?";
+  pool.query(sql,[bid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功！"});
+    }else{
+      res.send({code:-1,msg:"更新失败！"});
+    }
+  })
+})
+
+// 功能二十九：用户图书的归还
+app.post("/Ureturn",(req,res)=>{
+  var id = req.body.id;
+  var returndate = req.body.returndate;
+  var sql = "UPDATE borrow SET returndate=? where id = ?";
+  pool.query(sql,[returndate,id],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功！"});
+    }else{
+      res.send({code:-1,msg:"更新失败！"});
+    }
   })
 })
