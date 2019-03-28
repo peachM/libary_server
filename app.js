@@ -156,7 +156,7 @@ app.get("/Search",(req,res)=>{
     pageSize = 10;
   }
   // 3. 创建sql语句
-  var sql = " SELECT * FROM book WHERE CONCAT(title,author,press,ISBN) LIKE ? LIMIT ?,?";
+  var sql = " SELECT * FROM book WHERE CONCAT(title,author,press,ISBN) LIKE ? and state = 1 LIMIT ?,?";
   var ps = parseInt(pageSize);
   var offset = (pno-1)*pageSize;
   pool.query(sql,["%"+key+"%",offset,ps],(err,result)=>{
